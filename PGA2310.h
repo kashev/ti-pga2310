@@ -54,6 +54,9 @@ public:
     void incVolume (void);
     void decVolume (void);
 
+    void incVolume (uint8_t step);
+    void decVolume (uint8_t step);
+
 private:
     /* Direct Writing to Pins */
     void SPIWrite (uint8_t b);
