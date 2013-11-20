@@ -39,13 +39,11 @@ public:
     void begin (uint8_t zcen_enable);
 
     /* Getters */
-
     uint8_t getLeftVolume (void);
     uint8_t getRightVolume (void);
     boolean isMuted (void);
 
     /* Setters */
-
     void setVolume (uint8_t left, uint8_t right);
     void setVolume (uint8_t vol);
     void restoreVolume (void);
