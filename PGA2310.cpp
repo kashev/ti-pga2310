@@ -47,7 +47,7 @@ PGA2310::begin (void)
 }
 
 void
-begin (uint8_t zcen_enable)
+PGA2310::begin (uint8_t zcen_enable)
 {
     pinMode(_pinCS,    OUTPUT);
     pinMode(_pinSDATA, OUTPUT);
@@ -132,7 +132,7 @@ PGA2310::restoreVolume (void)
     tr = _v_right; tl = _v_left;
 
     _v_right = _pv_right; _v_left = _pv_left;
-    _pv_right = tr; _pv_left = pl;
+    _pv_right = tr; _pv_left = tl;
 }
 
 void
