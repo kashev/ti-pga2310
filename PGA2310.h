@@ -29,11 +29,14 @@ public:
 
     /* Setters */
 
-    void setVolume (uint8_t left, uint8_t right);\
+    void setVolume (uint8_t left, uint8_t right);
     void restoreVolume (void);
 
     void mute (void);
     void toggleMute (void);
+
+    void incVolume (void);
+    void decVolume (void);
 
 private:
     

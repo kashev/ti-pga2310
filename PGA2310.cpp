@@ -141,3 +141,26 @@ PGA2310::toggleMute (void)
         _muted = 1;
     }
 }
+
+
+void
+PGA2310::incVolume (void)
+{
+    uint8_t nl, nr;
+
+    nl = _v_left  == 255 ? 255 : _v_left  + 1;
+    nr = _v_right == 255 ? 255 : _v_right + 1;
+
+    setVolume(nl, nr);
+}
+
+void
+PGA2310::decVolume (void)
+{
+    uint8_t nl, nr;
+
+    nl = _v_left  == 0 ? 0 : _v_left  - 1;
+    nr = _v_right == 0 ? 0 : _v_right - 1;
+
+    setVolume(nl, nr);
+}
