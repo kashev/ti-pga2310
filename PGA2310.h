@@ -25,6 +25,7 @@ public:
 
     uint8_t getLeftVolume (void);
     uint8_t getRightVolume (void);
+    boolean isMuted (void);
 
     /* Setters */
 

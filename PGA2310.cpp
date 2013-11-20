@@ -61,6 +61,12 @@ PGA2310::getRightVolume (void)
     return _v_right;
 }
 
+boolean
+PGA2310::isMuted (void)
+{
+    return (boolean)_muted;
+}
+
 void
 PGA2310::SPIWrite (uint8_t byte)
 {
