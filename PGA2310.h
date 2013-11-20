@@ -19,10 +19,16 @@ public:
     PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN, uint8_t pinMUTE);
     PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN);
 
+    void begin (void);
+
     /* Getters */
 
     int getLeftVolume (void);
     int getRightVolume (void);
+
+    /* Setters */
+
+
 
 private:
     /* Pins */

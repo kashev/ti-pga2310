@@ -31,14 +31,26 @@ PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZ
     _hard_mute = 0;
 }
 
+void
+PGA2310::begin (void)
+{
+    pinMode(_pinCS,    OUTPUT);
+    pinMode(_pinSDATA, OUTPUT);
+    pinMode(_pinSCLK,  OUTPUT);
+    pinMode(_pinZCEN,  OUTPUT);
+
+    if (_hard_mute)
+        pinMode(_pinMUTE, OUTPUT);
+}
+
 int
-getLeftVolume (void)
+PGA2310::getLeftVolume (void)
 {
     return _v_left;
 }
 
 int
-getRightVolume (void)
+PGA2310::getRightVolume (void)
 {
     return _v_right;
 }
