@@ -94,6 +94,12 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
 }
 
 void
+PGA2310::setVolume (uint8_t vol)
+{
+    setVolume(vol, vol);
+}
+
+void
 PGA2310::restoreVolume (void)
 {
     uint8_t tr, tl;

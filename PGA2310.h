@@ -30,6 +30,7 @@ public:
     /* Setters */
 
     void setVolume (uint8_t left, uint8_t right);
+    void setVolume (uint8_t vol);
     void restoreVolume (void);
 
     void mute (void);
