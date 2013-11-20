@@ -14,7 +14,7 @@
 #ifndef TI_PGA2310_H
 #define TI_PGA2310_H
 
-/* #include "Energia.h" */
+#include "Energia.h"
 /* #include "Arduino.h" */
 
 /*
@@ -34,7 +34,9 @@ public:
     PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN, uint8_t pinMUTE);
     PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN);
 
+    /* Initializers */
     void begin (void);
+    void begin (uint8_t zcen_enable);
 
     /* Getters */
 
@@ -56,7 +58,7 @@ public:
 
 private:
     /* Direct Writing to Pins */
-    void SPIWrite (uint8_t byte);
+    void SPIWrite (uint8_t b);
 
     /*
      * DATA MEMBERS

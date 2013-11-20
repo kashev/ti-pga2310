@@ -43,6 +43,12 @@ PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZ
 void
 PGA2310::begin (void)
 {
+    begin(1); /* By Default, Enable Zero Crossing Detection */
+}
+
+void
+begin (uint8_t zcen_enable)
+{
     pinMode(_pinCS,    OUTPUT);
     pinMode(_pinSDATA, OUTPUT);
     pinMode(_pinSCLK,  OUTPUT);
@@ -50,6 +56,11 @@ PGA2310::begin (void)
 
     if (_hard_mute)
         pinMode(_pinMUTE, OUTPUT);
+
+    if (zcen_enable)
+        digitalWrite(_pinZCEN, HIGH);
+    else
+        digitalWrite(_pinZCEN, LOW);
 }
 
 uint8_t
