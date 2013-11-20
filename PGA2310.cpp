@@ -112,20 +112,32 @@ PGA2310::restoreVolume (void)
 void
 PGA2310::mute (void)
 {
-    if (_muted)
-    {
-        if(_hard_mute)
-            digitalWrite(_pinMUTE, LOW);
-        else:
-            setVolume(0, 0);
-        _muted = 0;
-    }
+    if(_hard_mute)
+        digitalWrite(_pinMUTE, LOW);
     else
-    {
+        setVolume(0, 0);
+    _muted = 1;
+}
+
+void
+PGA2310::toggleMute (void)
+{
+    if (_muted)
+    {   
+        // unmute
         if(_hard_mute)
             digitalWrite(_pinMUTE, HIGH);
         else:
             restoreVolume();
+        _muted = 0;
+    }
+    else
+    {
+        // mute
+        if(_hard_mute)
+            digitalWrite(_pinMUTE, LOW);
+        else:
+            setVolume(0, 0);
         _muted = 1;
     }
 }

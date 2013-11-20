@@ -32,7 +32,8 @@ public:
     void setVolume (uint8_t left, uint8_t right);\
     void restoreVolume (void);
 
-    void mute (void); // Note: mute() toggles muted state.
+    void mute (void);
+    void toggleMute (void);
 
 private:
     
