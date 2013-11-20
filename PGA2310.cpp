@@ -43,13 +43,13 @@ PGA2310::begin (void)
         pinMode(_pinMUTE, OUTPUT);
 }
 
-int
+uint8_t
 PGA2310::getLeftVolume (void)
 {
     return _v_left;
 }
 
-int
+uint8_t
 PGA2310::getRightVolume (void)
 {
     return _v_right;

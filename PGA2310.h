@@ -23,8 +23,8 @@ public:
 
     /* Getters */
 
-    int getLeftVolume (void);
-    int getRightVolume (void);
+    uint8_t getLeftVolume (void);
+    uint8_t getRightVolume (void);
 
     /* Setters */
 
@@ -43,8 +43,8 @@ private:
     uint8_t _hard_mute;
 
     /* Volume */
-    int _v_left,  _v_right;
-    int _pv_left, _pv_right;
+    uint8_t _v_left,  _v_right;
+    uint8_t _pv_left, _pv_right;
 };
 
 
