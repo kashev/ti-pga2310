@@ -76,4 +76,7 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
     SPIWrite(right);
     SPIWrite(left);
     digitalWrite(_pinCS, HIGH);
+
+    _pv_left = _v_left; _pv_right = _v_right;
+    _v_left = left; _v_right = right;
 }
