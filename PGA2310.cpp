@@ -139,7 +139,7 @@ PGA2310::toggleMute (void)
 {
     if (_muted)
     {   
-        // unmute
+        /* unmute */
         if(_hard_mute)
             digitalWrite(_pinMUTE, HIGH);
         else
@@ -148,7 +148,7 @@ PGA2310::toggleMute (void)
     }
     else
     {
-        // mute
+        /* mute */
         if(_hard_mute)
             digitalWrite(_pinMUTE, LOW);
         else
@@ -177,7 +177,7 @@ PGA2310::incVolume (void)
     
     if ((nl != _v_left) && (nr != _v_right))
     {
-        // minimize writes to device
+        /* minimize writes to device */
         setVolume(nl, nr);
     }
 }
@@ -201,7 +201,7 @@ PGA2310::decVolume (void)
     
     if ((nl != _v_left) && (nr != _v_right))
     {
-        // minimize writes to device
+        /* minimize writes to device */
         setVolume(nl, nr);
     }
 }
