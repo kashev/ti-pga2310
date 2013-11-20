@@ -18,11 +18,21 @@ public:
     /* Constructors */
     PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN, uint8_t pinMUTE);
     PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN);
+
+    /* Getters */
+
+    int getLeftVolume (void);
+    int getRightVolume (void);
+
 private:
     /* Pins */
     uint8_t _pinCS, _pinSDATA, _pinSCLK, _pinZCEN, _pinMUTE;
     /* Muting Options */
     uint8_t _hard_mute;
+
+    /* Volume */
+    int _v_left,  _v_right;
+    int _pv_left, _pv_right;
 };
 
 

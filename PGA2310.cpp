@@ -30,3 +30,15 @@ PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZ
 
     _hard_mute = 0;
 }
+
+int
+getLeftVolume (void)
+{
+    return _v_left;
+}
+
+int
+getRightVolume (void)
+{
+    return _v_right;
+}
