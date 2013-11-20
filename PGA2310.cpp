@@ -54,3 +54,17 @@ PGA2310::getRightVolume (void)
 {
     return _v_right;
 }
+
+void
+PGA2310::SPIWrite (uint8_t byte)
+{
+    for (uint8_t i = 0; i < 8; i++, byte <<= 1)
+    {
+        digitalWrite(_pinSCLK, LOW);
+        if (0x80 & byte)
+            digitalWrite(_pinSDATA, HIGH);
+        else
+            digitalWrite(_pinSDATA, LOW);
+        digitalWrite(_pinSCLK, HIGH);
+    }
+}

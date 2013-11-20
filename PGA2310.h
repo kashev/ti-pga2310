@@ -31,6 +31,12 @@ public:
 
 
 private:
+    
+    void SPIWrite (uint8_t byte);
+
+    /*
+     * DATA MEMBERS
+     */
     /* Pins */
     uint8_t _pinCS, _pinSDATA, _pinSCLK, _pinZCEN, _pinMUTE;
     /* Muting Options */
@@ -42,4 +48,4 @@ private:
 };
 
 
-#endif
+#endif /* TI_PGA2310_H */
