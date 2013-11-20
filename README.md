@@ -1,7 +1,9 @@
 ti-pga2310
 ==========
 
-## github.com/kashev/ti-pga2310 - Kashev Dalmia - kashev.dalmia@gmail.com ##
+##       github.com/kashev/ti-pga2310        ##
+
+### Kashev Dalmia - kashev.dalmia@gmail.com ###
 
 An Arduino / Energia Library for control of Texas Instruments PGA2310 Stereo Volume Controllers.
 
