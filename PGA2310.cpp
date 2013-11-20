@@ -186,7 +186,7 @@ PGA2310::incVolume (void)
     nl = _v_left  == MAX_GAIN ? MAX_GAIN : _v_left  + 1;
     nr = _v_right == MAX_GAIN ? MAX_GAIN : _v_right + 1;
     
-    if ((nl != _v_left) && (nr != _v_right))
+    if ((nl != _v_left) || (nr != _v_right))
     {
         /* minimize writes to device */
         setVolume(nl, nr);
@@ -210,7 +210,7 @@ PGA2310::decVolume (void)
     nl = _v_left  == 0 ? 0 : _v_left  - 1;
     nr = _v_right == 0 ? 0 : _v_right - 1;
     
-    if ((nl != _v_left) && (nr != _v_right))
+    if ((nl != _v_left) || (nr != _v_right))
     {
         /* minimize writes to device */
         setVolume(nl, nr);
