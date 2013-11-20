@@ -97,6 +97,9 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
 
     _pv_left = _v_left; _pv_right = _v_right;
     _v_left = left; _v_right = right;
+
+    if (!(_hard_mute) && (_v_left == 0) && (_v_right == 0))
+        _muted = 1;
 }
 
 void
@@ -139,7 +142,7 @@ PGA2310::toggleMute (void)
         // unmute
         if(_hard_mute)
             digitalWrite(_pinMUTE, HIGH);
-        else:
+        else
             restoreVolume();
         _muted = 0;
     }
@@ -148,7 +151,7 @@ PGA2310::toggleMute (void)
         // mute
         if(_hard_mute)
             digitalWrite(_pinMUTE, LOW);
-        else:
+        else
             setVolume(0, 0);
         _muted = 1;
     }
@@ -160,10 +163,23 @@ PGA2310::incVolume (void)
 {
     uint8_t nl, nr;
 
-    nl = _v_left  == 255 ? 255 : _v_left  + 1;
-    nr = _v_right == 255 ? 255 : _v_right + 1;
+    if(_muted)
+    {
+        if (_hard_mute)
+        {
+            digitalWrite(_pinMUTE, HIGH);
+        }
+        _muted = 0;
+    }
 
-    setVolume(nl, nr);
+    nl = _v_left  == MAX_GAIN ? MAX_GAIN : _v_left  + 1;
+    nr = _v_right == MAX_GAIN ? MAX_GAIN : _v_right + 1;
+    
+    if ((nl != _v_left) && (nr != _v_right))
+    {
+        // minimize writes to device
+        setVolume(nl, nr);
+    }
 }
 
 void
@@ -171,8 +187,21 @@ PGA2310::decVolume (void)
 {
     uint8_t nl, nr;
 
+    if(_muted)
+    {
+        if (_hard_mute)
+        {
+            digitalWrite(_pinMUTE, HIGH);
+        }
+        _muted = 0;
+    }
+
     nl = _v_left  == 0 ? 0 : _v_left  - 1;
     nr = _v_right == 0 ? 0 : _v_right - 1;
-
-    setVolume(nl, nr);
+    
+    if ((nl != _v_left) && (nr != _v_right))
+    {
+        // minimize writes to device
+        setVolume(nl, nr);
+    }
 }
