@@ -28,7 +28,10 @@ public:
 
     /* Setters */
 
-    void setVolume (uint8_t left, uint8_t right);
+    void setVolume (uint8_t left, uint8_t right);\
+    void restoreVolume (void);
+
+    void mute (void); // Note: mute() toggles muted state.
 
 private:
     
@@ -40,7 +43,7 @@ private:
     /* Pins */
     uint8_t _pinCS, _pinSDATA, _pinSCLK, _pinZCEN, _pinMUTE;
     /* Muting Options */
-    uint8_t _hard_mute;
+    uint8_t _hard_mute, _muted;
 
     /* Volume */
     uint8_t _v_left,  _v_right;

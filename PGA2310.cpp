@@ -18,6 +18,9 @@ PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZ
     _pinMUTE  = pinMUTE;
 
     _hard_mute = 1;
+    _muted = 0;
+
+    _v_left = _v_right = _pv_left = _pv_right = 0;
 
 }
 
@@ -29,6 +32,9 @@ PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZ
     _pinZCEN  = pinZCEN;
 
     _hard_mute = 0;
+    _muted = 0;
+
+    _v_left = _v_right = _pv_left = _pv_right = 0;
 }
 
 void
@@ -79,4 +85,41 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
 
     _pv_left = _v_left; _pv_right = _v_right;
     _v_left = left; _v_right = right;
+}
+
+void
+PGA2310::restoreVolume (void)
+{
+    uint8_t tr, tl;
+
+    digitalWrite(_pinCS, LOW);
+    SPIWrite(_pv_right);
+    SPIWrite(_pv_left);
+    digitalWrite(_pinCS, HIGH);
+
+    tr = _v_right; tl = _v_left;
+
+    _v_right = _pv_right; _v_left = _pv_left;
+    _pv_right = tr; _pv_left = pl;
+}
+
+void
+PGA2310::mute (void)
+{
+    if (_muted)
+    {
+        if(_hard_mute)
+            digitalWrite(_pinMUTE, LOW);
+        else:
+            setVolume(0, 0);
+        _muted = 0;
+    }
+    else
+    {
+        if(_hard_mute)
+            digitalWrite(_pinMUTE, HIGH);
+        else:
+            restoreVolume();
+        _muted = 1;
+    }
 }
