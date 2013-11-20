@@ -68,3 +68,12 @@ PGA2310::SPIWrite (uint8_t byte)
         digitalWrite(_pinSCLK, HIGH);
     }
 }
+
+void
+PGA2310::setVolume (uint8_t left, uint8_t right)
+{
+    digitalWrite(_pinCS, LOW);
+    SPIWrite(right);
+    SPIWrite(left);
+    digitalWrite(_pinCS, HIGH);
+}
