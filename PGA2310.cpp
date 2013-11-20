@@ -87,6 +87,9 @@ PGA2310::SPIWrite (uint8_t byte)
 void
 PGA2310::setVolume (uint8_t left, uint8_t right)
 {
+    if ((left > MAX_GAIN) || (right > MAX_GAIN))
+        return; /* don't allow gains above MAX_GAIN */
+
     digitalWrite(_pinCS, LOW);
     SPIWrite(right);
     SPIWrite(left);

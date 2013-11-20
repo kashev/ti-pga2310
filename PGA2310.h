@@ -17,6 +17,17 @@
 /* #include "Energia.h" */
 /* #include "Arduino.h" */
 
+/*
+ *  GAIN - can set gain to unity, boost, etc. OOB behavior is to not use
+ *         amplification portion of chip, but can be changed by commenting
+ *         UNITY_GAIN definition of MAX_GAIN and using 255 definition.
+ *         
+ *         Gain (dB) = 31.5 − 0.5 * (255 − N)
+ */
+   #define UNITY_GAIN         192 //  0.0 dB
+   #define MAX_GAIN    UNITY_GAIN //  0.0 dB
+/* #define MAX_GAIN           255 // 31.5 dB */
+
 class PGA2310 {
 public:
     /* Constructors */
