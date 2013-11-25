@@ -55,12 +55,18 @@ PGA2310::begin (uint8_t zcen_enable)
     pinMode(_pinZCEN,  OUTPUT);
 
     if (_hard_mute)
+    {
         pinMode(_pinMUTE, OUTPUT);
+    }
 
     if (zcen_enable)
+    {
         digitalWrite(_pinZCEN, HIGH);
+    }
     else
+    {
         digitalWrite(_pinZCEN, LOW);
+    }
 }
 
 uint8_t
@@ -87,10 +93,16 @@ PGA2310::SPIWrite (uint8_t byte)
     for (uint8_t i = 0; i < 8; i++, byte <<= 1)
     {
         digitalWrite(_pinSCLK, LOW);
+        
         if (0x80 & byte)
+        {
             digitalWrite(_pinSDATA, HIGH);
+        }
         else
+        {
             digitalWrite(_pinSDATA, LOW);
+        }
+        
         digitalWrite(_pinSCLK, HIGH);
     }
 }
@@ -99,7 +111,9 @@ void
 PGA2310::setVolume (uint8_t left, uint8_t right)
 {
     if ((left > MAX_GAIN) || (right > MAX_GAIN))
+    {
         return; /* don't allow gains above MAX_GAIN */
+    }
 
     digitalWrite(_pinCS, LOW);
     SPIWrite(right);
@@ -110,7 +124,9 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
     _v_left = left; _v_right = right;
 
     if (!(_hard_mute) && (_v_left == 0) && (_v_right == 0))
+    {
         _muted = 1;
+    }
 }
 
 void
@@ -139,9 +155,13 @@ void
 PGA2310::mute (void)
 {
     if (_hard_mute)
+    {
         digitalWrite(_pinMUTE, LOW);
+    }
     else
+    {
         setVolume(0, 0);
+    }
     _muted = 1;
 }
 
@@ -152,18 +172,26 @@ PGA2310::toggleMute (void)
     {   
         /* unmute */
         if (_hard_mute)
+        {
             digitalWrite(_pinMUTE, HIGH);
+        }
         else
+        {
             restoreVolume();
+        }    
         _muted = 0;
     }
     else
     {
         /* mute */
         if (_hard_mute)
+        {
             digitalWrite(_pinMUTE, LOW);
+        }
         else
+        {
             setVolume(0, 0);
+        }
         _muted = 1;
     }
 }
