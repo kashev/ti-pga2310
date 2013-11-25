@@ -127,6 +127,10 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
     {
         _muted = 1;
     }
+    else
+    {
+        _muted = 0;
+    }
 }
 
 void
