@@ -40,12 +40,7 @@ PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZ
     _v_left = _v_right = _pv_left = _pv_right = 0;
 }
 
-void
-PGA2310::begin (void)
-{
-    begin(1); /* By Default, Enable Zero Crossing Detection */
-}
-
+/* By Default, Enable Zero Crossing Detection */
 void
 PGA2310::begin (uint8_t zcen_enable)
 {

@@ -35,8 +35,7 @@ public:
     PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN);
 
     /* Initializers */
-    void begin (void);
-    void begin (uint8_t zcen_enable);
+    void begin (uint8_t zcen_enable = 1);
 
     /* Getters */
     uint8_t getLeftVolume (void);
