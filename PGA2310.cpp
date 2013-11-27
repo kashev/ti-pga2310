@@ -114,7 +114,7 @@ PGA2310::isMuted (void)
 void
 PGA2310::SPIWrite (uint8_t b)
 {
-    for (uint8_t i = 0; i < 8; i++, b <<= 1)
+    for (uint8_t i = 0; i < 8; i++)
     {
         digitalWrite(_pinSCLK, LOW);
         
@@ -128,6 +128,8 @@ PGA2310::SPIWrite (uint8_t b)
         }
         
         digitalWrite(_pinSCLK, HIGH);
+        
+        b <<= 1;
     }
 }
 
