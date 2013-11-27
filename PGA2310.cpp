@@ -12,32 +12,42 @@
 
 #include "PGA2310.h"
 
-PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN, uint8_t pinMUTE)
+PGA2310::PGA2310 (uint8_t pinCS,
+                  uint8_t pinSDATA,
+                  uint8_t pinSCLK,
+                  uint8_t pinZCEN,
+                  uint8_t pinMUTE)
+: _pinCS     (pinCS),
+  _pinSDATA  (pinSDATA),
+  _pinSCLK   (pinSCLK),
+  _pinZCEN   (pinZCEN),
+  _pinMUTE   (pinMUTE),
+  _hard_mute (1),
+  _muted     (0),
+  _v_left    (0),
+  _v_right   (0),
+  _pv_left   (0),
+  _pv_right  (0)
 {
-    _pinCS    = pinCS;
-    _pinSDATA = pinSDATA;
-    _pinSCLK  = pinSCLK;
-    _pinZCEN  = pinZCEN;
-    _pinMUTE  = pinMUTE;
-
-    _hard_mute = 1;
-    _muted = 0;
-
-    _v_left = _v_right = _pv_left = _pv_right = 0;
-
+    /* Intentionally Empty */
 }
 
-PGA2310::PGA2310 (uint8_t pinCS, uint8_t pinSDATA, uint8_t pinSCLK, uint8_t pinZCEN)
+PGA2310::PGA2310 (uint8_t pinCS,
+                  uint8_t pinSDATA,
+                  uint8_t pinSCLK,
+                  uint8_t pinZCEN)
+: _pinCS     (pinCS),
+  _pinSDATA  (pinSDATA),
+  _pinSCLK   (pinSCLK),
+  _pinZCEN   (pinZCEN),
+  _hard_mute (0),
+  _muted     (0),
+  _v_left    (0),
+  _v_right   (0),
+  _pv_left   (0),
+  _pv_right  (0)
 {
-    _pinCS    = pinCS;
-    _pinSDATA = pinSDATA;
-    _pinSCLK  = pinSCLK;
-    _pinZCEN  = pinZCEN;
-
-    _hard_mute = 0;
-    _muted = 0;
-
-    _v_left = _v_right = _pv_left = _pv_right = 0;
+    /* Intentionally Empty */
 }
 
 /* By Default, Enable Zero Crossing Detection */
