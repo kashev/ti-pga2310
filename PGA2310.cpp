@@ -77,6 +77,8 @@ PGA2310::begin (uint8_t zcen_enable)
     {
         digitalWrite(_pinZCEN, LOW);
     }
+
+    setVolume(UNITY_GAIN);
 }
 
 uint8_t
@@ -142,8 +144,8 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
     }
 
     digitalWrite(_pinCS, LOW);
-    SPIWrite(right << 1);
-    SPIWrite(left  << 1);
+    SPIWrite(right);
+    SPIWrite(left);
     digitalWrite(_pinCS, HIGH);
 
     _pv_left = _v_left; _pv_right = _v_right;
