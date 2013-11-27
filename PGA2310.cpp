@@ -82,13 +82,27 @@ PGA2310::begin (uint8_t zcen_enable)
 uint8_t
 PGA2310::getLeftVolume (void)
 {
-    return _v_left;
+    if (_muted)
+    {
+        return 0;
+    }
+    else
+    {
+        return _v_left;
+    }
 }
 
 uint8_t
 PGA2310::getRightVolume (void)
 {
-    return _v_right;
+    if (_muted)
+    {
+        return 0;
+    }
+    else
+    {
+        return _v_right;
+    }
 }
 
 boolean
