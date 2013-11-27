@@ -47,12 +47,17 @@ PGA2310::begin (uint8_t zcen_enable)
     pinMode(_pinCS,    OUTPUT);
     pinMode(_pinSDATA, OUTPUT);
     pinMode(_pinSCLK,  OUTPUT);
-    pinMode(_pinZCEN,  OUTPUT);
+
+    digitalWrite(_pinCS,    HIGH);
+    digitalWrite(_pinSDATA, HIGH);
+    digitalWrite(_pinSCLK,  HIGH);
 
     if (_hard_mute)
     {
         pinMode(_pinMUTE, OUTPUT);
     }
+
+    pinMode(_pinZCEN,  OUTPUT);
 
     if (zcen_enable)
     {
@@ -111,8 +116,8 @@ PGA2310::setVolume (uint8_t left, uint8_t right)
     }
 
     digitalWrite(_pinCS, LOW);
-    SPIWrite(right);
-    SPIWrite(left);
+    SPIWrite(right << 1);
+    SPIWrite(left  << 1);
     digitalWrite(_pinCS, HIGH);
 
     _pv_left = _v_left; _pv_right = _v_right;
