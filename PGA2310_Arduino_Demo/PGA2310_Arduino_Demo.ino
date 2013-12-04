@@ -1,5 +1,6 @@
 /*
  *  ti-pga2310
+ *  v 1.0.0
  *  github.com/kashev/ti-pga2310
  *      
  *      An Arduino / Energia Library for control of a Texas Instruments

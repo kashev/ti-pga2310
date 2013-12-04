@@ -1,6 +1,6 @@
 ti-pga2310
 ==========
-
+##                  v 1.0.0                  ##
 ##   https://github.com/kashev/ti-pga2310    ##
 
 ### Kashev Dalmia - kashev.dalmia@gmail.com ###
