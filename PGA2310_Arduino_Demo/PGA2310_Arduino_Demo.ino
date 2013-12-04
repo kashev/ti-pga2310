@@ -7,7 +7,7 @@
  *  
  *  Kashev Dalmia - kashev.dalmia@gmail.com
  *
- *  PGA2310 Arduino Demo.ino
+ *  PGA2310_Arduino_Demo.ino
  */
 
 /*
