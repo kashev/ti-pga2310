@@ -10,6 +10,29 @@
  *  PGA2310.cpp
  */
 
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 Kashev Dalmia
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 #include "PGA2310.h"
 
 PGA2310::PGA2310 (uint8_t pinCS,
@@ -77,8 +100,6 @@ PGA2310::begin (uint8_t zcen_enable)
     {
         digitalWrite(_pinZCEN, LOW);
     }
-
-    setVolume(UNITY_GAIN);
 }
 
 uint8_t
@@ -105,6 +126,12 @@ PGA2310::getRightVolume (void)
     {
         return _v_right;
     }
+}
+
+uint8_t
+PGA2310::getVolume (void)
+{
+    return getLeftVolume();
 }
 
 boolean
@@ -232,49 +259,13 @@ PGA2310::toggleMute (void)
 void
 PGA2310::incVolume (void)
 {
-    uint8_t nl, nr;
-
-    if (_muted)
-    {
-        if (_hard_mute)
-        {
-            digitalWrite(_pinMUTE, HIGH);
-        }
-        _muted = 0;
-    }
-
-    nl = _v_left  == MAX_GAIN ? MAX_GAIN : _v_left  + 1;
-    nr = _v_right == MAX_GAIN ? MAX_GAIN : _v_right + 1;
-    
-    if ((nl != _v_left) || (nr != _v_right))
-    {
-        /* minimize writes to device */
-        setVolume(nl, nr);
-    }
+    incVolume(1);
 }
 
 void
 PGA2310::decVolume (void)
 {
-    uint8_t nl, nr;
-
-    if (_muted)
-    {
-        if (_hard_mute)
-        {
-            digitalWrite(_pinMUTE, HIGH);
-        }
-        _muted = 0;
-    }
-
-    nl = _v_left  == 0 ? 0 : _v_left  - 1;
-    nr = _v_right == 0 ? 0 : _v_right - 1;
-    
-    if ((nl != _v_left) || (nr != _v_right))
-    {
-        /* minimize writes to device */
-        setVolume(nl, nr);
-    }
+    decVolume(1);
 }
 
 void

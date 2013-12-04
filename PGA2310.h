@@ -14,8 +14,8 @@
 #ifndef TI_PGA2310_H
 #define TI_PGA2310_H
 
-#include "Energia.h"
-/* #include "Arduino.h" */
+#include "Arduino.h"
+/* #include "Energia.h" */
 
 /*
  *  GAIN - can set gain to unity, boost, etc. OOB behavior is to not use
@@ -40,6 +40,7 @@ public:
     /* Getters */
     uint8_t getLeftVolume (void);
     uint8_t getRightVolume (void);
+    uint8_t getVolume (void);
     boolean isMuted (void);
 
     /* Setters */
